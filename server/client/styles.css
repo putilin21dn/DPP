@@ -1,0 +1,113 @@
+canvas
+{
+    max-height: 100%;
+    width: 100%; 
+    border-radius: 5px;
+}
+
+img
+{
+    height: 80px;
+    position: absolute;
+    top: 20px; left: 20px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: rgb(38, 36, 36);
+    flex-direction: column;
+}
+
+svg
+{
+    height: 20px;
+    margin: 0px -6px 0px -10px;
+}
+
+.hidden-buttons
+{
+    display: none;
+    text-align: center;
+    width: 900px;
+    margin-top: 20px;
+}
+
+.text-result
+{
+    font-size: 25px;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 20px;
+    display: none;
+}
+
+.drag-area 
+{
+    border: 2px dashed #fff;
+    height: 600px;
+    width: 900px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.drag-area.active 
+{
+    border: 2px solid #fff;
+}
+
+.drag-area .icon 
+{
+    font-size: 100px;
+    color: #fff;
+}
+
+.drag-area header 
+{
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.drag-area span 
+{
+    font-size: 25px;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px 0 15px 0;
+}
+
+.drag-area button, .download-button, .reset-button
+{
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: rgb(38, 36, 36);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drag-area img 
+{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
