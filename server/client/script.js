@@ -1,6 +1,5 @@
 function make_canvas(blob, boxes)
 {
-    // let canvas = document.getElementById('viewport');
     let canvas = document.createElement("canvas");
     ctx = canvas.getContext('2d');
     let img = new Image();
@@ -47,11 +46,13 @@ async function get_result(blob)
     if (ans.success)
         return make_canvas(blob, ans.boxes);
     else
+    {
         alert(ans.error);
+        location.href = '/';
+    }
     return null;
 }
 
-//selecting all required elements
 const drop_area = document.querySelector(".drag-area");
 const drag_text = drop_area.querySelector("header");
 const button = drop_area.querySelector("button");
@@ -95,12 +96,16 @@ async function show_file()
     {
         while (drop_area.lastChild)
             drop_area.removeChild(drop_area.lastChild);
+        let waiting = document.querySelector("#waiting");
+        drop_area.appendChild(waiting);
+        waiting.style.display = "block";
         let result = await get_result(file);
+        drop_area.removeChild(waiting);
         let text = document.querySelector([".text-result"]);
         text.style.display = "block";
         text.querySelector("#count").textContent = result.count;
-        document.querySelector([".hidden-buttons"]).style.display = "block";
-        let button = document.querySelector([".download-button"]);
+        document.querySelector(".hidden-buttons").style.display = "block";
+        let button = document.querySelector(".download-button");
         button.onclick = () => download_image(result.canvas);
         drop_area.appendChild(result.canvas);
     } 

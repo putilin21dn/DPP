@@ -8,7 +8,7 @@ const app = express();
 app.set("port", 8000);
 app.use(body_parser.json({limit: '50mb'}));
 
-let session;
+let session = null;
 const W = 720, H = 720;
 
 function get_files(dir)
@@ -26,9 +26,18 @@ function get_files(dir)
 app.post("/detect", async (request, response) =>
 {
     let base64 = request.body.image.split(';base64,');
+    base64.push("something");
     let encoded = Buffer.from(base64[1], "base64");
-    let img = await jimp.read(encoded);
-    let original = img.clone();
+    let img = null;
+    try
+    {
+        img = await jimp.read(encoded);
+    } 
+    catch (error)
+    {
+        response.send({ success: false, error: "Incorrect image" });
+        return;
+    }
     let scale_w = img.getWidth() / W;
     let scale_h = img.getHeight() / H;
     img.resize(W, H, jimp.RESIZE_BILINEAR);
